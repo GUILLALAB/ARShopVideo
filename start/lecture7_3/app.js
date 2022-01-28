@@ -49,7 +49,18 @@ class App{
         this.renderer.xr.enabled = true;
         
         //TO DO 1: If navigator includes xr and immersive-ar is supported then show the ar-button class
-        
+              
+   if ( 'xr' in navigator ) {
+      navigator.xr.isSessionSupported( 'immersive-ar' ).then( ( supported ) => {
+         if (supported){
+            const collection = document.getElementsByClassName("ar-button");
+            [...collection].forEach( el => {
+               el.style.display = 'block';
+             });
+         }
+      } );
+            
+  } 
         
         const self = this;
 
