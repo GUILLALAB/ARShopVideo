@@ -177,7 +177,7 @@ class App{
       self.scene.add( self.mesh );
        self.chair = self.mesh;
              //   self.scene.add( gltf.scene );
-                self.chair = gltf.scene;
+               // self.chair = gltf.scene;
         
                 self.chair.visible = false; 
                 
