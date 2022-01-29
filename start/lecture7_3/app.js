@@ -125,7 +125,8 @@ class App{
       self.scene.add( self.mesh );
        self.chair = self.mesh;
       self.video.play();
-
+               
+                self.test.visible = true;
 self.test.position.setFromMatrixPosition( self.reticle.matrix );
 
             }
