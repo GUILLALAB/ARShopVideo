@@ -225,6 +225,7 @@ class App{
             
             if (self.chair !== null){
               
+                self.mesh=null;
                 self.scene.remove( self.chair );
                 self.chair = null;
             }
