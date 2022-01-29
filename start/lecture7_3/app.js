@@ -59,7 +59,7 @@ var output=null;
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.outputEncoding = THREE.sRGBEncoding;
         container.appendChild( this.renderer.domElement );
-         this.slider = document.getElementById("myRange");
+        slider = document.getElementById("myRange");
 
         this.setEnvironment();
         
