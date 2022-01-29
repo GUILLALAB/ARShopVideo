@@ -300,6 +300,18 @@ class App{
             if ( this.hitTestSource ) this.getHitTestResults( frame );
         }
 
+    if(video!=null)
+        {
+                        this.reticle.visible = false;
+          if ( this.video.readyState === this.video.HAVE_ENOUGH_DATA ) 
+          {
+            if ( this.texture ) 
+              this.texture.needsUpdate = true;
+          }
+                 
+        }
+
+
         this.renderer.render( this.scene, this.camera );
 
     }
