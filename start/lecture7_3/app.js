@@ -29,7 +29,7 @@ class App{
         this.loadingBar.visible = false;
 
         this.assetsPath = '../../assets/ar-shop/';
-        
+        this.video = document.getElementById( 'video' );
         this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
         this.camera.position.set( 0, 1.6, 0 );
         
@@ -93,38 +93,7 @@ class App{
             if (self.reticle.visible){
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
-
-  self.video = document.getElementById( 'video' );
-   self.sources = document.getElementById('source');
-     self.video.pause();
-      self.sources.src = "../../assets/ar-shop/"+`video${1}.mp4`;
-      self.video.load();
-   self.texture = new THREE.VideoTexture( video );
-    self.texture.minFilter = THREE.LinearFilter;
-    self.texture.magFilter = THREE.LinearFilter;
-    self.texture.format = THREE.RGBFormat;
-
-     self.geometry = new THREE.PlaneBufferGeometry( 2, 1);
-
-    self.vertexShader = document.getElementById("vertexShader").textContent;
-    self.fragmentShader = document.getElementById("fragmentShader").textContent;
-
-        self.material = new THREE.ShaderMaterial({
-        transparent: true,
-        uniforms: {
-          map: { value: self.texture },
-          keyColor: { value: [0.0, 1.0, 0.0] },
-          similarity: { value: 0.74 },
-          smoothness: { value: 0.0 }
-        },
-        vertexShader: self.vertexShader,
-        fragmentShader: self.fragmentShader
-      });
-
-        self.mesh = new THREE.Mesh( self.geometry, self.material);
-      self.mesh.position.setFromMatrixPosition( self.reticle.matrix );
-      self.scene.add( self.mesh );
-      self.video.play();
+                this.video.play();
 
             }
         }
@@ -166,36 +135,38 @@ class App{
         const self = this;
         
         this.loadingBar.visible = true;
-        
-        // Load a glTF resource
-        loader.load(
-            // resource URL
-            `chair${id}.glb`,
-            // called when the resource is loaded
-            function ( gltf ) {
+   self.sources = document.getElementById('source');
+     self.video.pause();
+      self.sources.src = "../../assets/ar-shop/"+`video${1}.mp4`;
+      self.video.load();
+   self.texture = new THREE.VideoTexture( video );
+    self.texture.minFilter = THREE.LinearFilter;
+    self.texture.magFilter = THREE.LinearFilter;
+    self.texture.format = THREE.RGBFormat;
 
-                self.scene.add( gltf.scene );
-                self.chair = gltf.scene;
-        
-                self.chair.visible = false; 
-                
-                self.loadingBar.visible = false;
-                
-                self.renderer.setAnimationLoop( self.render.bind(self) );
-            },
-            // called while loading is progressing
-            function ( xhr ) {
+     self.geometry = new THREE.PlaneBufferGeometry( 2, 1);
 
-                self.loadingBar.progress = (xhr.loaded / xhr.total);
-                
-            },
-            // called when loading has errors
-            function ( error ) {
+    self.vertexShader = document.getElementById("vertexShader").textContent;
+    self.fragmentShader = document.getElementById("fragmentShader").textContent;
 
-                console.log( 'An error happened' );
+        self.material = new THREE.ShaderMaterial({
+        transparent: true,
+        uniforms: {
+          map: { value: self.texture },
+          keyColor: { value: [0.0, 1.0, 0.0] },
+          similarity: { value: 0.74 },
+          smoothness: { value: 0.0 }
+        },
+        vertexShader: self.vertexShader,
+        fragmentShader: self.fragmentShader
+      });
 
-            }
-        );
+        self.mesh = new THREE.Mesh( self.geometry, self.material);
+        self.scene.add( self.mesh );
+        self.chair = self.mesh;
+
+        self.chair.visible = false; 
+        self.loadingBar.visible = false;
     }           
     
     initAR(){
