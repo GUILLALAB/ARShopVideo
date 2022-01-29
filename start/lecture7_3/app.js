@@ -48,11 +48,11 @@ class App{
         this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
         this.camera.position.set( 0, 1.6, 0 );
         
-        scene = new THREE.Scene();
+        this.scene = new THREE.Scene();
 
         const ambient = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
         ambient.position.set( 0.5, 1, 0.25 );
-        scene.add(ambient);
+        this.scene.add(ambient);
             
         this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true } );
         this.renderer.setPixelRatio( window.devicePixelRatio );
@@ -68,7 +68,7 @@ class App{
         
         this.reticle.matrixAutoUpdate = false;
         this.reticle.visible = false;
-        scene.add( this.reticle );
+        this.scene.add( this.reticle );
         
         this.setupXR();
         
@@ -110,7 +110,7 @@ class App{
         this.controller = this.renderer.xr.getController( 0 );
         this.controller.addEventListener( 'select', onSelect );
         
-        scene.add( this.controller );
+        this.scene.add( this.controller );
     }
     
     resize(){
@@ -275,7 +275,7 @@ class App{
             if ( this.hitTestSource ) this.getHitTestResults( frame );
         }
 
-        this.renderer.render( scene, this.camera );
+        this.renderer.render( this.scene, this.camera );
 
     }
 }
