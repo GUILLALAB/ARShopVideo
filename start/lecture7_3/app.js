@@ -93,6 +93,12 @@ class App{
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
 
+  self.video = document.getElementById( 'video' );
+   self.sources = document.getElementById('source');
+   self.texture = new THREE.VideoTexture( video );
+    self.texture.minFilter = THREE.LinearFilter;
+    self.texture.magFilter = THREE.LinearFilter;
+    self.texture.format = THREE.RGBFormat;
             }
         }
 
