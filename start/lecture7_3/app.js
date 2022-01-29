@@ -5,18 +5,7 @@ import { ARButton } from '../../libs/ARButton.js';
 import { LoadingBar } from '../../libs/LoadingBar.js';
 
  let container;
-    let camera, scene, renderer,source;
-    let controller;
-
-    let reticle;
-    var video, texture,material;
-    var isset=0;
-    var mesh=null;
-    let videoTexture;
-    let videoImageContext ;
-    let hitTestSource = null;
-    let hitTestSourceRequested = false;
-var slider,output;
+var slider;
 
 function myFunction() {
      // video.play();
@@ -38,7 +27,7 @@ class App{
     constructor(){
 
   var video=null;
-    var source=null;
+    var sources=null;
   var texture=null;
   var material=null;
     var isset=0;
@@ -120,8 +109,8 @@ var output=null;
                 self.chair.visible = true;
 
                  if(isset==0){
-    video = document.getElementById( 'video' );
-    source = document.getElementById('source');
+    this.video = document.getElementById( 'video' );
+    this.sources = document.getElementById('source');
   
     
 
