@@ -28,7 +28,7 @@ class App{
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.outputEncoding = THREE.sRGBEncoding;
         container.appendChild( this.renderer.domElement );
-        var slider = document.getElementById("myRange");
+        const slider = document.getElementById("myRange");
         this.setEnvironment();
         
         this.reticle = new THREE.Mesh(
@@ -78,7 +78,7 @@ class App{
                 self.chair.visible = true;
 
     const video = document.getElementById( 'video' );
-   const source = document.getElementById('source');
+    const source = document.getElementById('source');
   
             }
         }
