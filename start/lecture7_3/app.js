@@ -43,7 +43,6 @@ class App{
         renderer.setSize( window.innerWidth, window.innerHeight );
         renderer.outputEncoding = THREE.sRGBEncoding;
         container.appendChild( renderer.domElement );
-        
         this.setEnvironment();
         
         reticle = new THREE.Mesh(
@@ -61,21 +60,6 @@ class App{
         
     }
     
-    function myFunction() {
-     // video.play();
-       reticle.visible = true;
-    }
-
-    function PlayVideo(srcVideo){
-      video.pause();
-      source.src = srcVideo;
-      video.load();
-    }
-
-    function StopVideo(){
-      document.getElementById('video').pause();
-    }
-
     setupXR(){
         renderer.xr.enabled = true;
         
