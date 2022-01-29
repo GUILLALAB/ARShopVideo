@@ -126,7 +126,7 @@ class App{
 
 
      const mesh = new THREE.Mesh( geometry, material);
-      mesh.position.setFromMatrixPosition( reticle.matrix );
+      mesh.position.setFromMatrixPosition( this.reticle.matrix );
       this.scene.add( mesh );
       video.play();
             }
