@@ -9,11 +9,7 @@ import { LoadingBar } from '../../libs/LoadingBar.js';
        this.reticle.visible = true;
     }
  
-     function PlayVideo(srcVideo){
-      this.video.pause();
-      this.sources.src = srcVideo;
-      this.video.load();
-    }
+    
 
     function StopVideo(){
       document.getElementById('video').pause();
@@ -100,8 +96,9 @@ class App{
 
             this.video = document.getElementById( 'video' );
    this.sources = document.getElementById('source');
-       PlayVideo("video.mp4");
-
+      this.video.pause();
+      this.sources.src = "video.mp4";
+      this.video.load();
       this.texture = new THREE.VideoTexture( this.video );
     this.texture.minFilter = THREE.LinearFilter;
     this.texture.magFilter = THREE.LinearFilter;
@@ -127,7 +124,7 @@ class App{
       });
 
 
-     this.mesh = new THREE.Mesh(  this.geometry,  this.material);
+     this.mesh = new THREE.Mesh(this.geometry,  this.material);
       this.mesh.position.setFromMatrixPosition(this.reticle.matrix );
       this.scene.add( this.mesh );
                 this.renderer.setAnimationLoop( this.render.bind(this) );
