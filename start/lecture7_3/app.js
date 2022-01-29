@@ -38,6 +38,7 @@ class App{
     constructor(){
 
   var video=null;
+    var source=null;
   var texture=null;
   var material=null;
     var isset=0;
