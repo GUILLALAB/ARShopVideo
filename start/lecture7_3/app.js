@@ -299,6 +299,18 @@ class App{
             if ( this.hitTestSource ) this.getHitTestResults( frame );
         }
 
+    if(video!=null)
+        {
+                        reticle.visible = false;
+          if ( video.readyState === video.HAVE_ENOUGH_DATA ) 
+          {
+            if ( texture ) 
+              texture.needsUpdate = true;
+          }
+                  if(mesh!=null){
+
+}
+        }
         this.renderer.render( this.scene, this.camera );
 
     }
