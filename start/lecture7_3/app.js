@@ -308,9 +308,7 @@ class App{
             if (this.texture) 
               this.texture.needsUpdate = true;
           }
-                  if(this.mesh!=null){
-
-}
+                  
         }
         this.renderer.render( this.scene, this.camera );
 
