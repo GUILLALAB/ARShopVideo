@@ -121,16 +121,8 @@ var output=null;
                  if(isset==0){
     video = document.getElementById( 'video' );
     source = document.getElementById('source');
-    PlayVideo("video.mp4");
-    texture = new THREE.VideoTexture( video );
-    texture.minFilter = THREE.LinearFilter;
-    texture.magFilter = THREE.LinearFilter;
-    texture.format = THREE.RGBFormat;
+  
     
-    var geometry = new THREE.PlaneBufferGeometry( 2, 1);
-
-    const vertexShader = document.getElementById("vertexShader").textContent;
-    const fragmentShader = document.getElementById("fragmentShader").textContent;
 
       // Cria o material usandoff a urlVideoTexture
 
