@@ -4,8 +4,6 @@ import { RGBELoader } from '../../libs/three/jsm/RGBELoader.js';
 import { ARButton } from '../../libs/ARButton.js';
 import { LoadingBar } from '../../libs/LoadingBar.js';
 
- let container;
-var slider;
 
 function myFunction() {
      // video.play();
@@ -26,8 +24,8 @@ class App{
 
     constructor(){
 
-        container = document.createElement( 'div' );
-        document.body.appendChild( container );
+        this.container = document.createElement( 'div' );
+        document.body.appendChild( this.container );
         
         this.loadingBar = new LoadingBar();
         this.loadingBar.visible = false;
@@ -47,8 +45,8 @@ class App{
         this.renderer.setPixelRatio( window.devicePixelRatio );
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.outputEncoding = THREE.sRGBEncoding;
-        container.appendChild( this.renderer.domElement );
-        slider = document.getElementById("myRange");
+        this.container.appendChild( this.renderer.domElement );
+        this.slider = document.getElementById("myRange");
 
         this.setEnvironment();
         
