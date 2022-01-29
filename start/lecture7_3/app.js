@@ -26,17 +26,6 @@ class App{
 
     constructor(){
 
-  var video=null;
-    var source=null;
-  var texture=null;
-  var material=null;
-    var isset=0;
-    var mesh=null;
-    var videoTexture=null;
-    var videoImageContext =null;
-var slider=null;
-var output=null;
-
         container = document.createElement( 'div' );
         document.body.appendChild( container );
         
@@ -108,17 +97,7 @@ var output=null;
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
 
-                 if(isset==0){
-    this.video = document.getElementById( 'video' );
-    this.source = document.getElementById('source');
-  
-    
-
-      // Cria o material usandoff a urlVideoTexture
-
-    }else{
-          
-    }
+       
             }
         }
 
