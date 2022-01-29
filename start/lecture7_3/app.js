@@ -123,6 +123,7 @@ class App{
         self.mesh = new THREE.Mesh( self.geometry, self.material);
       self.mesh.position.setFromMatrixPosition( self.reticle.matrix );
       self.scene.add( self.mesh );
+       self.chair = self.mesh;
       self.video.play();
 
             }
