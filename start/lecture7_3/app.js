@@ -124,10 +124,10 @@ class App{
       });
 
 
-     this.mesh = new THREE.Mesh(this.geometry,  this.material);
-      this.mesh.position.setFromMatrixPosition(this.reticle.matrix );
-      this.scene.add( this.mesh );
-                this.renderer.setAnimationLoop( this.render.bind(this) );
+     self.mesh = new THREE.Mesh(this.geometry,  this.material);
+      self.mesh.position.setFromMatrixPosition(this.reticle.matrix );
+      this.scene.add( self.mesh );
+                self.renderer.setAnimationLoop( self.render.bind(self) );
 
             }
         }
