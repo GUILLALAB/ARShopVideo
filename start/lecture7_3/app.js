@@ -94,9 +94,11 @@ class App{
                 self.chair.visible = true;
 
    const video = document.getElementById( 'video' );
-         video.play();
-
-
+     document.getElementById('video').pause();
+      const source = document.getElementById('source');
+      source.src = "video.mp4";
+      video.load();
+      video.play();
 
             }
         }
