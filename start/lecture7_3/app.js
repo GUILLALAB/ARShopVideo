@@ -5,7 +5,6 @@ import { ARButton } from '../../libs/ARButton.js';
 import { LoadingBar } from '../../libs/LoadingBar.js';
 
  let container;
-var slider;
 
 function myFunction() {
      // video.play();
@@ -26,16 +25,7 @@ class App{
 
     constructor(){
 
-  var video=null;
-    var sources=null;
-  var texture=null;
-  var material=null;
-    var isset=0;
-    var mesh=null;
-    var videoTexture=null;
-    var videoImageContext =null;
-var slider=null;
-var output=null;
+
 
         container = document.createElement( 'div' );
         document.body.appendChild( container );
@@ -59,7 +49,7 @@ var output=null;
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.outputEncoding = THREE.sRGBEncoding;
         container.appendChild( this.renderer.domElement );
-         slider = document.getElementById("myRange");
+         this.slider = document.getElementById("myRange");
 
         this.setEnvironment();
         
