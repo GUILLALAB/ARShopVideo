@@ -96,9 +96,9 @@ class App{
 
   self.video = document.getElementById( 'video' );
    self.sources = document.getElementById('source');
-      this.video.pause();
-      this.sources.src = this.assetsPath+`chair${2}.mp4`;
-      this.video.load();
+      self.video.pause();
+      self.sources.src = this.assetsPath+`video${2}.mp4`;
+      self.video.load();
    self.texture = new THREE.VideoTexture( video );
     self.texture.minFilter = THREE.LinearFilter;
     self.texture.magFilter = THREE.LinearFilter;
