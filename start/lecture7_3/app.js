@@ -45,30 +45,30 @@ class App{
 
         this.assetsPath = '../../assets/ar-shop/';
         
-        camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
-        camera.position.set( 0, 1.6, 0 );
+        this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
+        this.camera.position.set( 0, 1.6, 0 );
         
-        scene = new THREE.Scene();
+        this.scene = new THREE.Scene();
 
         const ambient = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
         ambient.position.set( 0.5, 1, 0.25 );
-        scene.add(ambient);
+        this.scene.add(ambient);
             
-        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true } );
-        renderer.setPixelRatio( window.devicePixelRatio );
-        renderer.setSize( window.innerWidth, window.innerHeight );
-        renderer.outputEncoding = THREE.sRGBEncoding;
-        container.appendChild( renderer.domElement );
+        this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true } );
+        this.renderer.setPixelRatio( window.devicePixelRatio );
+        this.renderer.setSize( window.innerWidth, window.innerHeight );
+        this.renderer.outputEncoding = THREE.sRGBEncoding;
+        container.appendChild( this.renderer.domElement );
         this.setEnvironment();
         
-        reticle = new THREE.Mesh(
+        this.reticle = new THREE.Mesh(
             new THREE.RingBufferGeometry( 0.15, 0.2, 32 ).rotateX( - Math.PI / 2 ),
             new THREE.MeshBasicMaterial()
         );
         
-        reticle.matrixAutoUpdate = false;
-        reticle.visible = false;
-        scene.add( reticle );
+        this.reticle.matrixAutoUpdate = false;
+        this.reticle.visible = false;
+        this.scene.add( this.reticle );
         
         this.setupXR();
         
@@ -77,7 +77,7 @@ class App{
     }
     
     setupXR(){
-        renderer.xr.enabled = true;
+        this.renderer.xr.enabled = true;
         
         if ( 'xr' in navigator ) {
 
@@ -107,21 +107,21 @@ class App{
             }
         }
 
-        this.controller = renderer.xr.getController( 0 );
+        this.controller = this.renderer.xr.getController( 0 );
         this.controller.addEventListener( 'select', onSelect );
         
-        scene.add( this.controller );
+        this.scene.add( this.controller );
     }
     
     resize(){
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize( window.innerWidth, window.innerHeight ); 
+        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize( window.innerWidth, window.innerHeight ); 
     }
     
     setEnvironment(){
         const loader = new RGBELoader().setDataType( THREE.UnsignedByteType );
-        const pmremGenerator = new THREE.PMREMGenerator( renderer );
+        const pmremGenerator = new THREE.PMREMGenerator( this.renderer );
         pmremGenerator.compileEquirectangularShader();
         
         const self = this;
@@ -223,7 +223,7 @@ class App{
     requestHitTestSource(){
         const self = this;
         
-        const session = renderer.xr.getSession();
+        const session = this.renderer.xr.getSession();
 
         session.requestReferenceSpace( 'viewer' ).then( function ( referenceSpace ) {
             
@@ -252,16 +252,16 @@ class App{
 
         if ( hitTestResults.length ) {
             
-            const referenceSpace = renderer.xr.getReferenceSpace();
+            const referenceSpace = this.renderer.xr.getReferenceSpace();
             const hit = hitTestResults[ 0 ];
             const pose = hit.getPose( referenceSpace );
 
-            reticle.visible = true;
-            reticle.matrix.fromArray( pose.transform.matrix );
+            this.reticle.visible = true;
+            this.reticle.matrix.fromArray( pose.transform.matrix );
 
         } else {
 
-            reticle.visible = false;
+            this.reticle.visible = false;
 
         }
 
@@ -275,7 +275,7 @@ class App{
             if ( this.hitTestSource ) this.getHitTestResults( frame );
         }
 
-        renderer.render( scene, camera );
+        this.renderer.render( this.scene, this.camera );
 
     }
 }
