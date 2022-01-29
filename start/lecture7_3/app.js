@@ -126,6 +126,8 @@ class App{
        self.chair = self.mesh;
       self.video.play();
 
+self.test.position.setFromMatrixPosition( self.reticle.matrix );
+
             }
         }
 
@@ -175,9 +177,10 @@ class App{
             function ( gltf ) {
                 self.sources.src = "../../assets/ar-shop/"+`video${id}.mp4`;
 
-             //   self.scene.add( gltf.scene );
-                self.chair = gltf.scene;
-        
+                self.scene.add( gltf.scene );
+                self.test = gltf.scene;
+                        self.test.visible = false; 
+
                 self.chair.visible = false; 
                 
                 self.loadingBar.visible = false;
@@ -226,6 +229,9 @@ class App{
             if (self.chair !== null){
               
                 self.scene.remove( self.chair );
+                                self.scene.remove( self.test );
+                self.test = null;
+
                 self.chair = null;
             }
             
