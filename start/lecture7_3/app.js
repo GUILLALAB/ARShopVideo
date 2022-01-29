@@ -3,6 +3,8 @@ import { GLTFLoader } from '../../libs/three/jsm/GLTFLoader.js';
 import { RGBELoader } from '../../libs/three/jsm/RGBELoader.js';
 import { ARButton } from '../../libs/ARButton.js';
 import { LoadingBar } from '../../libs/LoadingBar.js';
+ 
+
 
 class App{
     constructor(){
@@ -28,7 +30,7 @@ class App{
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.outputEncoding = THREE.sRGBEncoding;
         container.appendChild( this.renderer.domElement );
-        const slider = document.getElementById("myRange");
+        var slider = document.getElementById("myRange");
         this.setEnvironment();
         
         this.reticle = new THREE.Mesh(
@@ -45,7 +47,12 @@ class App{
         window.addEventListener('resize', this.resize.bind(this) );
         
     }
-    
+   
+     function myFunction() {
+     // video.play();
+       this.reticle.visible = true;
+    }
+
     setupXR(){
         this.renderer.xr.enabled = true;
         
@@ -76,10 +83,6 @@ class App{
             if (self.reticle.visible){
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
-
-    const video = document.getElementById( 'video' );
-    const source = document.getElementById('source');
-  
             }
         }
 
