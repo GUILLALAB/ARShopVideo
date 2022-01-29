@@ -84,7 +84,8 @@ class App{
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
 
-                
+            const video = document.getElementById( 'video' );
+   const source = document.getElementById('source');
             }
         }
 
