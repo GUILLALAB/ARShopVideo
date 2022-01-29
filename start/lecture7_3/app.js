@@ -102,7 +102,7 @@ class App{
    this.sources = document.getElementById('source');
        PlayVideo("video.mp4");
 
-      this.texture = new THREE.VideoTexture( video );
+      this.texture = new THREE.VideoTexture( this.video );
     this.texture.minFilter = THREE.LinearFilter;
     this.texture.magFilter = THREE.LinearFilter;
     this.texture.format = THREE.RGBFormat;
