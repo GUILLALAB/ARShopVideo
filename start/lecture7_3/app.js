@@ -92,8 +92,7 @@ class App{
             if (self.chair===undefined) return;
             
             if (self.reticle.visible){
-                self.chair.position.setFromMatrixPosition( self.reticle.matrix );
-                self.chair.visible = true;
+             
 
  
      self.video.pause();
@@ -124,6 +123,8 @@ class App{
       self.mesh.position.setFromMatrixPosition( self.reticle.matrix );
       self.scene.add( self.mesh );
        self.chair = self.mesh;
+          self.chair.position.setFromMatrixPosition( self.reticle.matrix );
+                self.chair.visible = true;
       self.video.play();
                
                 self.test.visible = true;
@@ -180,7 +181,7 @@ self.test.position.setFromMatrixPosition( self.reticle.matrix );
 
                 self.scene.add( gltf.scene );
                 self.test = gltf.scene;
-                        self.test.visible = false; 
+                self.test.visible = false; 
 
                 self.chair.visible = false; 
                 
