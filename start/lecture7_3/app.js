@@ -168,7 +168,34 @@ class App{
         this.loadingBar.visible = true;
         
         // Load a glTF resource
-      
+        loader.load(
+            // resource URL
+            `chair${id}.glb`,
+            // called when the resource is loaded
+            function ( gltf ) {
+
+             //   self.scene.add( gltf.scene );
+                self.chair = gltf.scene;
+        
+                self.chair.visible = false; 
+                
+                self.loadingBar.visible = false;
+                
+                self.renderer.setAnimationLoop( self.render.bind(self) );
+            },
+            // called while loading is progressing
+            function ( xhr ) {
+
+                self.loadingBar.progress = (xhr.loaded / xhr.total);
+                
+            },
+            // called when loading has errors
+            function ( error ) {
+
+                console.log( 'An error happened' );
+
+            }
+        );
     }           
     
     initAR(){
