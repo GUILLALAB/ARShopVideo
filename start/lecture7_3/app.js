@@ -22,7 +22,7 @@ class App{
 
     constructor(){
 
-        const container = document.createElement( 'div' );
+        container = document.createElement( 'div' );
         document.body.appendChild( container );
         
         this.loadingBar = new LoadingBar();
