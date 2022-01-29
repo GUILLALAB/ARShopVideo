@@ -134,27 +134,8 @@ var output=null;
 
       // Cria o material usandoff a urlVideoTexture
 
-      material = new THREE.ShaderMaterial({
-        transparent: true,
-        uniforms: {
-          map: { value: texture },
-          keyColor: { value: [0.0, 1.0, 0.0] },
-          similarity: { value: 0.74 },
-          smoothness: { value: 0.0 }
-        },
-        vertexShader: vertexShader,
-        fragmentShader: fragmentShader
-      });
-
-
-      mesh = new THREE.Mesh( geometry, material);
-      mesh.position.setFromMatrixPosition( reticle.matrix );
-      this.scene.add( mesh );
-      isset=1;
-      video.play();
     }else{
-            mesh.position.setFromMatrixPosition( this.reticle.matrix );
-           mesh.lookAt(this.camera.position);
+          
     }
             }
         }
