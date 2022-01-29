@@ -62,20 +62,7 @@ class App{
         
     }
     
-    function myFunction() {
-     // video.play();
-       reticle.visible = true;
-    }
-
-    function PlayVideo(srcVideo){
-      video.pause();
-      source.src = srcVideo;
-      video.load();
-    }
-
-    function StopVideo(){
-      document.getElementById('video').pause();
-    }
+   
 
     setupXR(){
         renderer.xr.enabled = true;
@@ -108,7 +95,7 @@ class App{
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
 
-                
+
             }
         }
 
