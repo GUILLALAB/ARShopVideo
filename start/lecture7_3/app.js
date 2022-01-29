@@ -130,7 +130,7 @@ class App{
      this.mesh = new THREE.Mesh(  this.geometry,  this.material);
       this.mesh.position.setFromMatrixPosition(this.reticle.matrix );
       this.scene.add( this.mesh );
-      animate();
+                this.renderer.setAnimationLoop( this.render.bind(this) );
 
             }
         }
