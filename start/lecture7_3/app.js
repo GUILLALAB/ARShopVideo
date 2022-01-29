@@ -98,8 +98,37 @@ class App{
       const source = document.getElementById('source');
       source.src = "video.mp4";
       video.load();
-      video.play();
+     
 
+      const texture = new THREE.VideoTexture( video );
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.format = THREE.RGBFormat;
+    
+    const geometry = new THREE.PlaneBufferGeometry( 2, 1);
+
+    const vertexShader = document.getElementById("vertexShader").textContent;
+    const fragmentShader = document.getElementById("fragmentShader").textContent;
+
+      // Cria o material usandoff a urlVideoTexture
+
+     const material = new THREE.ShaderMaterial({
+        transparent: true,
+        uniforms: {
+          map: { value: texture },
+          keyColor: { value: [0.0, 1.0, 0.0] },
+          similarity: { value: 0.74 },
+          smoothness: { value: 0.0 }
+        },
+        vertexShader: vertexShader,
+        fragmentShader: fragmentShader
+      });
+
+
+     const mesh = new THREE.Mesh( geometry, material);
+      mesh.position.setFromMatrixPosition( reticle.matrix );
+      this.scene.add( mesh );
+      video.play();
             }
         }
 
