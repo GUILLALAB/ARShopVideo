@@ -9,11 +9,12 @@ import { LoadingBar } from '../../libs/LoadingBar.js';
        this.reticle.visible = false;
     }
  
-     function PlayVideo(srcVideo){
-      document.getElementById('video').pause();
-      source.src = srcVideo;
-      video.load();
+    function PlayVideo(srcVideo){
+      self.video.pause();
+      self.sources.src = srcVideo;
+      self.video.load();
     }
+
 
     function StopVideo(){
       document.getElementById('video').pause();
@@ -95,6 +96,7 @@ class App{
 
   self.video = document.getElementById( 'video' );
    self.sources = document.getElementById('source');
+   PlayVideo("video3.mp4")
    self.texture = new THREE.VideoTexture( video );
     self.texture.minFilter = THREE.LinearFilter;
     self.texture.magFilter = THREE.LinearFilter;
