@@ -139,8 +139,10 @@ class App{
         
           self.video = document.getElementById( 'video' );
    self.sources = document.getElementById('source');
-   PlayVideo(this.assetsPath+`video${id}.mp4`);
-   self.texture = new THREE.VideoTexture( video );
+    this.video.pause();
+      this.sources.src = this.assetsPath+`video${id}.mp4`;
+      this.video.load();
+   self.texture = new THREE.VideoTexture( self.video );
     self.texture.minFilter = THREE.LinearFilter;
     self.texture.magFilter = THREE.LinearFilter;
     self.texture.format = THREE.RGBFormat;
