@@ -6,19 +6,15 @@ import { LoadingBar } from '../../libs/LoadingBar.js';
  
  function myFunction() {
      // video.play();
-       this.reticle.visible = true;
+       reticle.visible = true;
     }
  
-    
+  
 
     function StopVideo(){
       document.getElementById('video').pause();
     }
-function animate() {
 
-        this.renderer.setAnimationLoop( render );
-
-      }
 class App{
     constructor(){
         const container = document.createElement( 'div' );
@@ -94,40 +90,7 @@ class App{
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
 
-            this.video = document.getElementById( 'video' );
-   this.sources = document.getElementById('source');
-      this.video.pause();
-      this.sources.src = "video.mp4";
-      this.video.load();
-      this.texture = new THREE.VideoTexture( this.video );
-    this.texture.minFilter = THREE.LinearFilter;
-    this.texture.magFilter = THREE.LinearFilter;
-    this.texture.format = THREE.RGBFormat;
-    
-    this.geometry = new THREE.PlaneBufferGeometry( 2, 1);
-
-    this.vertexShader = document.getElementById("vertexShader").textContent;
-    this.fragmentShader = document.getElementById("fragmentShader").textContent;
-
-      // Cria o material usandoff a urlVideoTexture
-
-    this.material = new THREE.ShaderMaterial({
-        transparent: true,
-        uniforms: {
-          map: { value:  this.texture },
-          keyColor: { value: [0.0, 1.0, 0.0] },
-          similarity: { value: 0.74 },
-          smoothness: { value: 0.0 }
-        },
-        vertexShader:  this.vertexShader,
-        fragmentShader:  this.fragmentShader
-      });
-
-
-     self.mesh = new THREE.Mesh(this.geometry,  this.material);
-      self.mesh.position.setFromMatrixPosition(this.reticle.matrix );
-      this.scene.add( self.mesh );
-                self.renderer.setAnimationLoop( self.render.bind(self) );
+          
 
             }
         }
@@ -300,16 +263,6 @@ class App{
             if ( this.hitTestSource ) this.getHitTestResults( frame );
         }
 
-    if(this.video!=null)
-        {
-                        this.reticle.visible = false;
-          if (this.video.readyState === this.video.HAVE_ENOUGH_DATA ) 
-          {
-            if (this.texture) 
-              this.texture.needsUpdate = true;
-          }
-                  
-        }
         this.renderer.render( this.scene, this.camera );
 
     }
