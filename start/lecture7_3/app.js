@@ -224,9 +224,7 @@ class App{
             currentSession = null;
             
             if (self.chair !== null){
-                self.video=null;
-                self.sources=null;
-                self.mesh=null;
+              
                 self.scene.remove( self.chair );
                 self.chair = null;
             }
