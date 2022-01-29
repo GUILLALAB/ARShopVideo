@@ -92,7 +92,8 @@ class App{
             if (self.chair===undefined) return;
             
             if (self.reticle.visible){
-             
+                self.chair.position.setFromMatrixPosition( self.reticle.matrix );
+                self.chair.visible = true;
 
  
      self.video.pause();
@@ -123,12 +124,7 @@ class App{
       self.mesh.position.setFromMatrixPosition( self.reticle.matrix );
       self.scene.add( self.mesh );
        self.chair = self.mesh;
-          self.chair.position.setFromMatrixPosition( self.reticle.matrix );
-                self.chair.visible = true;
       self.video.play();
-               
-                self.test.visible = true;
-self.test.position.setFromMatrixPosition( self.reticle.matrix );
 
             }
         }
@@ -179,10 +175,9 @@ self.test.position.setFromMatrixPosition( self.reticle.matrix );
             function ( gltf ) {
                 self.sources.src = "../../assets/ar-shop/"+`video${id}.mp4`;
 
-                self.scene.add( gltf.scene );
-                self.test = gltf.scene;
-                self.test.visible = false; 
-
+             //   self.scene.add( gltf.scene );
+                self.chair = gltf.scene;
+        
                 self.chair.visible = false; 
                 
                 self.loadingBar.visible = false;
@@ -231,9 +226,6 @@ self.test.position.setFromMatrixPosition( self.reticle.matrix );
             if (self.chair !== null){
               
                 self.scene.remove( self.chair );
-                                self.scene.remove( self.test );
-                self.test = null;
-
                 self.chair = null;
             }
             
