@@ -176,7 +176,7 @@ class App{
             // called when the resource is loaded
             function ( gltf ) {
 
-                self.scene.add( gltf.scene );
+              //  self.scene.add( gltf.scene );
                 self.chair = gltf.scene;
         
                 self.chair.visible = false; 
