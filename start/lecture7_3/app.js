@@ -9,7 +9,11 @@ import { LoadingBar } from '../../libs/LoadingBar.js';
        this.reticle.visible = false;
     }
  
-   
+     function PlayVideo(srcVideo){
+      document.getElementById('video').pause();
+      source.src = srcVideo;
+      video.load();
+    }
 
 
 
@@ -85,40 +89,6 @@ class App{
             if (self.reticle.visible){
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
-
-                const video = document.getElementById( 'video' );
-     document.getElementById('video').pause();
-      document.getElementById('source').src = "video.mp4";
-      document.getElementById('video').load();
-    const texture = new THREE.VideoTexture( this.video );
-    this.texture.minFilter = THREE.LinearFilter;
-    this.texture.magFilter = THREE.LinearFilter;
-    this.texture.format = THREE.RGBFormat;
-    
-    const geometry = new THREE.PlaneBufferGeometry( 2, 1);
-
-    const vertexShader = document.getElementById("vertexShader").textContent;
-    const fragmentShader = document.getElementById("fragmentShader").textContent;
-
-      // Cria o material usandoff a urlVideoTexture
-
-      const material = new THREE.ShaderMaterial({
-        transparent: true,
-        uniforms: {
-          map: { value: this.texture },
-          keyColor: { value: [0.0, 1.0, 0.0] },
-          similarity: { value: 0.74 },
-          smoothness: { value: 0.0 }
-        },
-        vertexShader: this.vertexShader,
-        fragmentShader: this.fragmentShader
-      });
-
-
-      const mesh = new THREE.Mesh( this.geometry, this.material);
-      this.mesh.position.setFromMatrixPosition( reticle.matrix );
-      this.scene.add( this.mesh );
-      this.video.play();
 
             }
         }
