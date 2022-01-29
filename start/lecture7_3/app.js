@@ -99,6 +99,29 @@ class App{
     self.texture.minFilter = THREE.LinearFilter;
     self.texture.magFilter = THREE.LinearFilter;
     self.texture.format = THREE.RGBFormat;
+
+     self.geometry = new THREE.PlaneBufferGeometry( 2, 1);
+
+    self.vertexShader = document.getElementById("vertexShader").textContent;
+    self.fragmentShader = document.getElementById("fragmentShader").textContent;
+
+        self.material = new THREE.ShaderMaterial({
+        transparent: true,
+        uniforms: {
+          map: { value: self.texture },
+          keyColor: { value: [0.0, 1.0, 0.0] },
+          similarity: { value: 0.74 },
+          smoothness: { value: 0.0 }
+        },
+        vertexShader: self.vertexShader,
+        fragmentShader: self.fragmentShader
+      });
+
+        self.mesh = new THREE.Mesh( self.geometry, self.material);
+      self.mesh.position.setFromMatrixPosition( self.reticle.matrix );
+      self.scene.add( self.mesh );
+      self.video.play();
+
             }
         }
 
