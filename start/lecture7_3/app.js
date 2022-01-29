@@ -43,16 +43,18 @@ class App{
         renderer.setSize( window.innerWidth, window.innerHeight );
         renderer.outputEncoding = THREE.sRGBEncoding;
         container.appendChild( renderer.domElement );
+         slider = document.getElementById("myRange");
+
         this.setEnvironment();
         
-        this.reticle = new THREE.Mesh(
+        reticle = new THREE.Mesh(
             new THREE.RingBufferGeometry( 0.15, 0.2, 32 ).rotateX( - Math.PI / 2 ),
             new THREE.MeshBasicMaterial()
         );
         
-        this.reticle.matrixAutoUpdate = false;
-        this.reticle.visible = false;
-        scene.add( this.reticle );
+        reticle.matrixAutoUpdate = false;
+        reticle.visible = false;
+        scene.add( reticle );
         
         this.setupXR();
         
@@ -60,6 +62,21 @@ class App{
         
     }
     
+    function myFunction() {
+     // video.play();
+       reticle.visible = true;
+    }
+
+    function PlayVideo(srcVideo){
+      video.pause();
+      source.src = srcVideo;
+      video.load();
+    }
+
+    function StopVideo(){
+      document.getElementById('video').pause();
+    }
+
     setupXR(){
         renderer.xr.enabled = true;
         
@@ -68,6 +85,8 @@ class App{
             navigator.xr.isSessionSupported( 'immersive-ar' ).then( ( supported ) => {
 
                 if (supported){
+                            document.getElementById("btn").addEventListener("click", myFunction);
+
                     const collection = document.getElementsByClassName("ar-button");
                     [...collection].forEach( el => {
                         el.style.display = 'block';
@@ -88,6 +107,45 @@ class App{
             if (self.reticle.visible){
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
+
+                if(isset==0){
+    video = document.getElementById( 'video' );
+    source = document.getElementById('source');
+    PlayVideo("video.mp4");
+    texture = new THREE.VideoTexture( video );
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.format = THREE.RGBFormat;
+    
+    var geometry = new THREE.PlaneBufferGeometry( 2, 1);
+
+    const vertexShader = document.getElementById("vertexShader").textContent;
+    const fragmentShader = document.getElementById("fragmentShader").textContent;
+
+      // Cria o material usandoff a urlVideoTexture
+
+      material = new THREE.ShaderMaterial({
+        transparent: true,
+        uniforms: {
+          map: { value: texture },
+          keyColor: { value: [0.0, 1.0, 0.0] },
+          similarity: { value: 0.74 },
+          smoothness: { value: 0.0 }
+        },
+        vertexShader: vertexShader,
+        fragmentShader: fragmentShader
+      });
+
+
+      mesh = new THREE.Mesh( geometry, material);
+      mesh.position.setFromMatrixPosition( reticle.matrix );
+      scene.add( mesh );
+      isset=1;
+      video.play();
+    }else{
+            mesh.position.setFromMatrixPosition( reticle.matrix );
+           mesh.lookAt(camera.position);
+    }
             }
         }
 
@@ -240,12 +298,12 @@ class App{
             const hit = hitTestResults[ 0 ];
             const pose = hit.getPose( referenceSpace );
 
-            this.reticle.visible = true;
-            this.reticle.matrix.fromArray( pose.transform.matrix );
+            reticle.visible = true;
+            reticle.matrix.fromArray( pose.transform.matrix );
 
         } else {
 
-            this.reticle.visible = false;
+            reticle.visible = false;
 
         }
 
@@ -257,6 +315,25 @@ class App{
             if ( this.hitTestSourceRequested === false ) this.requestHitTestSource( )
 
             if ( this.hitTestSource ) this.getHitTestResults( frame );
+        }
+
+           if(video!=null)
+        {
+                        reticle.visible = false;
+          if ( video.readyState === video.HAVE_ENOUGH_DATA ) 
+          {
+            if ( texture ) 
+              texture.needsUpdate = true;
+          }
+                  if(mesh!=null){
+
+          slider.oninput = function() {
+ // mesh.scale.set(slider.value,slider.value,slider.value);
+ mesh.scale.x = slider.value;
+  mesh.scale.y = slider.value;
+
+}
+}
         }
 
         renderer.render( scene, camera );
