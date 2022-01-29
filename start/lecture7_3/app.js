@@ -32,10 +32,20 @@ function myFunction() {
     function StopVideo(){
       document.getElementById('video').pause();
     }
-    
+
 class App{
 
     constructor(){
+
+  var video=null;
+  var texture=null;
+  var material=null;
+    var isset=0;
+    var mesh=null;
+    var videoTexture=null;
+    var videoImageContext =null;
+var slider=null;
+var output=null;
 
         container = document.createElement( 'div' );
         document.body.appendChild( container );
