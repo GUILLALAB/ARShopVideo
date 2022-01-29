@@ -4,10 +4,7 @@ import { RGBELoader } from '../../libs/three/jsm/RGBELoader.js';
 import { ARButton } from '../../libs/ARButton.js';
 import { LoadingBar } from '../../libs/LoadingBar.js';
 
-
-class App{
-    
-     let container;
+ let container;
     let camera, scene, renderer,source;
     let controller;
 
@@ -20,6 +17,8 @@ class App{
     let hitTestSource = null;
     let hitTestSourceRequested = false;
 var slider,output;
+
+class App{
 
     constructor(){
 
