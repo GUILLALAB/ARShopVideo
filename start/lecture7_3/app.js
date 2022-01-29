@@ -149,12 +149,12 @@ var output=null;
 
       mesh = new THREE.Mesh( geometry, material);
       mesh.position.setFromMatrixPosition( reticle.matrix );
-      scene.add( mesh );
+      this.scene.add( mesh );
       isset=1;
       video.play();
     }else{
-            mesh.position.setFromMatrixPosition( reticle.matrix );
-           mesh.lookAt(camera.position);
+            mesh.position.setFromMatrixPosition( this.reticle.matrix );
+           mesh.lookAt(this.camera.position);
     }
             }
         }
