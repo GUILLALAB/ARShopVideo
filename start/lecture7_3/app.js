@@ -4,7 +4,6 @@ import { RGBELoader } from '../../libs/three/jsm/RGBELoader.js';
 import { ARButton } from '../../libs/ARButton.js';
 import { LoadingBar } from '../../libs/LoadingBar.js';
 
-
     let container;
     let camera, scene, renderer,source;
     let controller;
@@ -18,21 +17,6 @@ import { LoadingBar } from '../../libs/LoadingBar.js';
     let hitTestSource = null;
     let hitTestSourceRequested = false;
 var slider,output;
-
-  function myFunction() {
-     // video.play();
-       reticle.visible = true;
-    }
-
-    function PlayVideo(srcVideo){
-      video.pause();
-      source.src = srcVideo;
-      video.load();
-    }
-
-    function StopVideo(){
-      document.getElementById('video').pause();
-    }
 
 class App{
     constructor(){
@@ -59,8 +43,6 @@ class App{
         renderer.setSize( window.innerWidth, window.innerHeight );
         renderer.outputEncoding = THREE.sRGBEncoding;
         container.appendChild( renderer.domElement );
-         slider = document.getElementById("myRange");
-
         this.setEnvironment();
         
         reticle = new THREE.Mesh(
@@ -77,8 +59,8 @@ class App{
         window.addEventListener('resize', this.resize.bind(this) );
         
     }
-  
-
+    
+    
     setupXR(){
         renderer.xr.enabled = true;
         
@@ -87,8 +69,6 @@ class App{
             navigator.xr.isSessionSupported( 'immersive-ar' ).then( ( supported ) => {
 
                 if (supported){
-                            document.getElementById("btn").addEventListener("click", myFunction);
-
                     const collection = document.getElementsByClassName("ar-button");
                     [...collection].forEach( el => {
                         el.style.display = 'block';
@@ -109,8 +89,6 @@ class App{
             if (self.reticle.visible){
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
-
-                
             }
         }
 
