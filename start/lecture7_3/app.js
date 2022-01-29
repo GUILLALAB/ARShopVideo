@@ -97,7 +97,7 @@ class App{
   self.video = document.getElementById( 'video' );
    self.sources = document.getElementById('source');
      self.video.pause();
-      self.sources.src = "../../assets/ar-shop/"+`video${2}.mp4`;
+      self.sources.src = "../../assets/ar-shop/"+`video${1}.mp4`;
       self.video.load();
    self.texture = new THREE.VideoTexture( video );
     self.texture.minFilter = THREE.LinearFilter;
