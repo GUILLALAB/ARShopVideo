@@ -6,20 +6,6 @@ import { LoadingBar } from '../../libs/LoadingBar.js';
 
 class App{
     constructor(){
-         let container;
-    let camera, scene, renderer,source;
-    let controller;
-
-    let reticle;
-    var video, texture,material;
-    var isset=0;
-    var mesh=null;
-    let videoTexture;
-    let videoImageContext ;
-    let hitTestSource = null;
-    let hitTestSourceRequested = false;
-    var slider,output;
-
         const container = document.createElement( 'div' );
         document.body.appendChild( container );
         
