@@ -18,6 +18,21 @@ import { LoadingBar } from '../../libs/LoadingBar.js';
     let hitTestSourceRequested = false;
 var slider,output;
 
+function myFunction() {
+     // video.play();
+       reticle.visible = true;
+    }
+
+    function PlayVideo(srcVideo){
+      video.pause();
+      source.src = srcVideo;
+      video.load();
+    }
+
+    function StopVideo(){
+      document.getElementById('video').pause();
+    }
+    
 class App{
 
     constructor(){
