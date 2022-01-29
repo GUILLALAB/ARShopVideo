@@ -303,7 +303,7 @@ class App{
     if(this.video!=null)
         {
                         this.reticle.visible = false;
-          if (this.video.readyState === video.HAVE_ENOUGH_DATA ) 
+          if (this.video.readyState === this.video.HAVE_ENOUGH_DATA ) 
           {
             if (this.texture) 
               this.texture.needsUpdate = true;
