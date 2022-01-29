@@ -110,44 +110,7 @@ class App{
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
 
-                  if(isset==0){
-    video = document.getElementById( 'video' );
-    source = document.getElementById('source');
-    PlayVideo("video.mp4");
-    texture = new THREE.VideoTexture( video );
-    texture.minFilter = THREE.LinearFilter;
-    texture.magFilter = THREE.LinearFilter;
-    texture.format = THREE.RGBFormat;
-    
-    var geometry = new THREE.PlaneBufferGeometry( 2, 1);
-
-    const vertexShader = document.getElementById("vertexShader").textContent;
-    const fragmentShader = document.getElementById("fragmentShader").textContent;
-
-      // Cria o material usandoff a urlVideoTexture
-
-      material = new THREE.ShaderMaterial({
-        transparent: true,
-        uniforms: {
-          map: { value: texture },
-          keyColor: { value: [0.0, 1.0, 0.0] },
-          similarity: { value: 0.74 },
-          smoothness: { value: 0.0 }
-        },
-        vertexShader: vertexShader,
-        fragmentShader: fragmentShader
-      });
-
-
-      mesh = new THREE.Mesh( geometry, material);
-      mesh.position.setFromMatrixPosition( reticle.matrix );
-      scene.add( mesh );
-      isset=1;
-      video.play();
-    }else{
-            mesh.position.setFromMatrixPosition( reticle.matrix );
-           mesh.lookAt(camera.position);
-    }
+                
             }
         }
 
@@ -317,25 +280,6 @@ class App{
             if ( this.hitTestSourceRequested === false ) this.requestHitTestSource( )
 
             if ( this.hitTestSource ) this.getHitTestResults( frame );
-        }
-
-    if(video!=null)
-        {
-                        reticle.visible = false;
-          if ( video.readyState === video.HAVE_ENOUGH_DATA ) 
-          {
-            if ( texture ) 
-              texture.needsUpdate = true;
-          }
-                  if(mesh!=null){
-
-          slider.oninput = function() {
- // mesh.scale.set(slider.value,slider.value,slider.value);
- mesh.scale.x = slider.value;
-  mesh.scale.y = slider.value;
-
-}
-}
         }
 
         renderer.render( scene, camera );
