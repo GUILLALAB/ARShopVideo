@@ -4,6 +4,7 @@ import { RGBELoader } from '../../libs/three/jsm/RGBELoader.js';
 import { ARButton } from '../../libs/ARButton.js';
 import { LoadingBar } from '../../libs/LoadingBar.js';
 
+
     let container;
     let camera, scene, renderer,source;
     let controller;
@@ -18,6 +19,21 @@ import { LoadingBar } from '../../libs/LoadingBar.js';
     let hitTestSourceRequested = false;
 var slider,output;
 
+  function myFunction() {
+     // video.play();
+       reticle.visible = true;
+    }
+
+    function PlayVideo(srcVideo){
+      video.pause();
+      source.src = srcVideo;
+      video.load();
+    }
+
+    function StopVideo(){
+      document.getElementById('video').pause();
+    }
+    
 class App{
     constructor(){
 
@@ -59,7 +75,8 @@ class App{
         window.addEventListener('resize', this.resize.bind(this) );
         
     }
-    
+  
+
     setupXR(){
         renderer.xr.enabled = true;
         
