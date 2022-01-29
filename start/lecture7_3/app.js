@@ -18,7 +18,11 @@ import { LoadingBar } from '../../libs/LoadingBar.js';
     function StopVideo(){
       document.getElementById('video').pause();
     }
+function animate() {
 
+        this.renderer.setAnimationLoop( render );
+
+      }
 class App{
     constructor(){
         const container = document.createElement( 'div' );
@@ -126,8 +130,7 @@ class App{
      this.mesh = new THREE.Mesh( geometry, material);
       mesh.position.setFromMatrixPosition( reticle.matrix );
       this.scene.add( mesh );
-      video.play();
-
+animate();
             }
         }
 
@@ -176,7 +179,7 @@ class App{
             // called when the resource is loaded
             function ( gltf ) {
 
-              //  self.scene.add( gltf.scene );
+                self.scene.add( gltf.scene );
                 self.chair = gltf.scene;
         
                 self.chair.visible = false; 
