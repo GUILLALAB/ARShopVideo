@@ -4,28 +4,10 @@ import { RGBELoader } from '../../libs/three/jsm/RGBELoader.js';
 import { ARButton } from '../../libs/ARButton.js';
 import { LoadingBar } from '../../libs/LoadingBar.js';
 
-
-function myFunction() {
-     // video.play();
-       reticle.visible = true;
-    }
-
-    function PlayVideo(srcVideo){
-      video.pause();
-      source.src = srcVideo;
-      video.load();
-    }
-
-    function StopVideo(){
-      document.getElementById('video').pause();
-    }
-
 class App{
-
     constructor(){
-
-        this.container = document.createElement( 'div' );
-        document.body.appendChild( this.container );
+        const container = document.createElement( 'div' );
+        document.body.appendChild( container );
         
         this.loadingBar = new LoadingBar();
         this.loadingBar.visible = false;
@@ -45,8 +27,7 @@ class App{
         this.renderer.setPixelRatio( window.devicePixelRatio );
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.outputEncoding = THREE.sRGBEncoding;
-        this.container.appendChild( this.renderer.domElement );
-
+        container.appendChild( this.renderer.domElement );
         this.setEnvironment();
         
         this.reticle = new THREE.Mesh(
@@ -92,8 +73,6 @@ class App{
             if (self.reticle.visible){
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
-
-       
             }
         }
 
@@ -264,24 +243,7 @@ class App{
 
             if ( this.hitTestSource ) this.getHitTestResults( frame );
         }
- if(video!=null)
-        {
-                        reticle.visible = false;
-          if ( video.readyState === video.HAVE_ENOUGH_DATA ) 
-          {
-            if ( texture ) 
-              texture.needsUpdate = true;
-          }
-                  if(mesh!=null){
 
-          slider.oninput = function() {
- // mesh.scale.set(slider.value,slider.value,slider.value);
- mesh.scale.x = slider.value;
-  mesh.scale.y = slider.value;
-
-}
-}
-        }
         this.renderer.render( this.scene, this.camera );
 
     }
