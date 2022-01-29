@@ -8,6 +8,16 @@ import { LoadingBar } from '../../libs/LoadingBar.js';
      // video.play();
        reticle.visible = true;
     }
+ 
+     function PlayVideo(srcVideo){
+      video.pause();
+      source.src = srcVideo;
+      video.load();
+    }
+
+    function StopVideo(){
+      document.getElementById('video').pause();
+    }
 
 class App{
     constructor(){
@@ -86,6 +96,38 @@ class App{
 
             const video = document.getElementById( 'video' );
    const source = document.getElementById('source');
+       PlayVideo("video.mp4");
+
+      const texture = new THREE.VideoTexture( video );
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.format = THREE.RGBFormat;
+    
+    const geometry = new THREE.PlaneBufferGeometry( 2, 1);
+
+    const vertexShader = document.getElementById("vertexShader").textContent;
+    const fragmentShader = document.getElementById("fragmentShader").textContent;
+
+      // Cria o material usandoff a urlVideoTexture
+
+    const  material = new THREE.ShaderMaterial({
+        transparent: true,
+        uniforms: {
+          map: { value: texture },
+          keyColor: { value: [0.0, 1.0, 0.0] },
+          similarity: { value: 0.74 },
+          smoothness: { value: 0.0 }
+        },
+        vertexShader: vertexShader,
+        fragmentShader: fragmentShader
+      });
+
+
+     const mesh = new THREE.Mesh( geometry, material);
+      mesh.position.setFromMatrixPosition( reticle.matrix );
+      this.scene.add( mesh );
+      video.play();
+
             }
         }
 
