@@ -34,7 +34,8 @@ class App{
         this.camera.position.set( 0, 1.6, 0 );
         
         this.scene = new THREE.Scene();
-
+ this.video = document.getElementById( 'video' );
+   this.sources = document.getElementById('source');
         const ambient = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
         ambient.position.set( 0.5, 1, 0.25 );
         this.scene.add(ambient);
@@ -94,8 +95,7 @@ class App{
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
 
-  self.video = document.getElementById( 'video' );
-   self.sources = document.getElementById('source');
+ 
      self.video.pause();
       self.video.load();
    self.texture = new THREE.VideoTexture( video );
