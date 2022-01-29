@@ -117,19 +117,19 @@ class App{
     this.material = new THREE.ShaderMaterial({
         transparent: true,
         uniforms: {
-          map: { value: texture },
+          map: { value: this.texture },
           keyColor: { value: [0.0, 1.0, 0.0] },
           similarity: { value: 0.74 },
           smoothness: { value: 0.0 }
         },
-        vertexShader: vertexShader,
-        fragmentShader: fragmentShader
+        vertexShader: this.vertexShader,
+        fragmentShader: this.fragmentShader
       });
 
 
-     this.mesh = new THREE.Mesh( geometry, material);
-      mesh.position.setFromMatrixPosition( reticle.matrix );
-      this.scene.add( mesh );
+     this.mesh = new THREE.Mesh( this.geometry, this.material);
+      this.mesh.position.setFromMatrixPosition( this.reticle.matrix );
+      this.scene.add( this.mesh );
 animate();
             }
         }
@@ -170,37 +170,12 @@ animate();
         const loader = new GLTFLoader( ).setPath(this.assetsPath);
         const self = this;
         
-        this.loadingBar.visible = true;
-        
-        // Load a glTF resource
-        loader.load(
-            // resource URL
-            `chair${id}.glb`,
-            // called when the resource is loaded
-            function ( gltf ) {
 
-                self.scene.add( gltf.scene );
-                self.chair = gltf.scene;
         
                 self.chair.visible = false; 
                 
                 self.loadingBar.visible = false;
-                
-                self.renderer.setAnimationLoop( self.render.bind(self) );
-            },
-            // called while loading is progressing
-            function ( xhr ) {
-
-                self.loadingBar.progress = (xhr.loaded / xhr.total);
-                
-            },
-            // called when loading has errors
-            function ( error ) {
-
-                console.log( 'An error happened' );
-
-            }
-        );
+       
     }           
     
     initAR(){
