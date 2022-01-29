@@ -132,7 +132,6 @@ class App{
     showChair(id){
         this.initAR();
         
-        const loader = new GLTFLoader( ).setPath(this.assetsPath);
         const self = this;
         
         this.loadingBar.visible = true;
@@ -166,7 +165,7 @@ class App{
 
         self.mesh = new THREE.Mesh( self.geometry, self.material);
       self.scene.add( self.mesh );
-      self.chair=self.mesh.scene;
+      self.chair=self.mesh;
         // Load a glTF resource
        self.chair.visible = false; 
                 
