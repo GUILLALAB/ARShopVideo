@@ -90,7 +90,7 @@ class App{
      document.getElementById('video').pause();
       document.getElementById('source').src = "video.mp4";
       document.getElementById('video').load();
-    const texture = new THREE.VideoTexture( video );
+    const texture = new THREE.VideoTexture( this.video );
     this.texture.minFilter = THREE.LinearFilter;
     this.texture.magFilter = THREE.LinearFilter;
     this.texture.format = THREE.RGBFormat;
