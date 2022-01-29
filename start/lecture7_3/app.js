@@ -4,7 +4,10 @@ import { RGBELoader } from '../../libs/three/jsm/RGBELoader.js';
 import { ARButton } from '../../libs/ARButton.js';
 import { LoadingBar } from '../../libs/LoadingBar.js';
  
-
+ function myFunction() {
+     // video.play();
+       reticle.visible = true;
+    }
 
 class App{
     constructor(){
@@ -30,7 +33,7 @@ class App{
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.outputEncoding = THREE.sRGBEncoding;
         container.appendChild( this.renderer.domElement );
-        var slider = document.getElementById("myRange");
+        const slider = document.getElementById("myRange");
         this.setEnvironment();
         
         this.reticle = new THREE.Mesh(
@@ -48,10 +51,7 @@ class App{
         
     }
    
-     function myFunction() {
-     // video.play();
-       this.reticle.visible = true;
-    }
+    
 
     setupXR(){
         this.renderer.xr.enabled = true;
