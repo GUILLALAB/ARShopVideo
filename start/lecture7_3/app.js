@@ -9,10 +9,10 @@ import { LoadingBar } from '../../libs/LoadingBar.js';
        reticle.visible = true;
     }
  
-   function PlayVideo(srcVideo){
-      this.video.pause();
-      this.sources.src = srcVideo;
-      this.video.load();
+     function PlayVideo(srcVideo){
+      video.pause();
+      source.src = srcVideo;
+      video.load();
     }
 
     function StopVideo(){
@@ -94,8 +94,6 @@ class App{
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
 
-          
-
             }
         }
 
@@ -144,37 +142,8 @@ class App{
             // called when the resource is loaded
             function ( gltf ) {
 
-                this.video = document.getElementById( 'video' );
-    this.sources = document.getElementById('source');
-    PlayVideo("video.mp4");
-    this.texture = new THREE.VideoTexture( this.video );
-    this.texture.minFilter = THREE.LinearFilter;
-    this.texture.magFilter = THREE.LinearFilter;
-    this.texture.format = THREE.RGBFormat;
-    
-    const geometry = new THREE.PlaneBufferGeometry( 2, 1);
-
-    const vertexShader = document.getElementById("vertexShader").textContent;
-    const fragmentShader = document.getElementById("fragmentShader").textContent;
-
-      // Cria o material usandoff a urlVideoTexture
-
-      this.material = new THREE.ShaderMaterial({
-        transparent: true,
-        uniforms: {
-          map: { value: this.texture },
-          keyColor: { value: [0.0, 1.0, 0.0] },
-          similarity: { value: 0.74 },
-          smoothness: { value: 0.0 }
-        },
-        vertexShader: this.vertexShader,
-        fragmentShader: this.fragmentShader
-      });
-
-
-      self.mesh = new THREE.Mesh(this.geometry, this.material);
-      scene.add( self.mesh );
-                self.chair = self.mesh.scene;
+                self.scene.add( gltf.scene );
+                self.chair = gltf.scene;
         
                 self.chair.visible = false; 
                 
