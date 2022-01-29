@@ -6,11 +6,11 @@ import { LoadingBar } from '../../libs/LoadingBar.js';
  
  function myFunction() {
      // video.play();
-       reticle.visible = true;
+       this.reticle.visible = false;
     }
  
      function PlayVideo(srcVideo){
-      video.pause();
+      document.getElementById('video').pause();
       source.src = srcVideo;
       video.load();
     }
