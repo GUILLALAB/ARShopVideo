@@ -305,7 +305,7 @@ class App{
 
     if(this.video!=null)
         {
-                        this.eticle.visible = false;
+                        this.reticle.visible = false;
           if (this.video.readyState === video.HAVE_ENOUGH_DATA ) 
           {
             if (this.texture) 
