@@ -22,69 +22,12 @@
 
   <!-- Custom styles for this template -->
   <link href="css/shop-homepage.css" rel="stylesheet">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-.btn {
-  background-color: DodgerBlue;
-  border: none;
-  color: white;
-  padding: 12px 16px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* Darker background on mouse-over */
-.btn:hover {
-  background-color: RoyalBlue;
-}
-</style>
 
 </head>
 
 <body>
     <script src="../../libs/fas.js"></script>
-      <script id="vertexShader" type="glsl">
-
-    varying vec2 vUv;
-    void main( void ) {
-      vUv = uv;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
-    }
-
-    </script>
-
-
-    <script id="fragmentShader" type="glsl">
-
-    uniform vec3 keyColor;
-    uniform float similarity;
-    uniform float smoothness;
-    varying vec2 vUv;
-    uniform sampler2D map;
-    void main() {
-
-      vec4 videoColor = texture2D(map, vUv);
-
-      float Y1 = 0.299 * keyColor.r + 0.587 * keyColor.g + 0.114 * keyColor.b;
-      float Cr1 = keyColor.r - Y1;
-      float Cb1 = keyColor.b - Y1;
-
-      float Y2 = 0.299 * videoColor.r + 0.587 * videoColor.g + 0.114 * videoColor.b;
-      float Cr2 = videoColor.r - Y2;
-      float Cb2 = videoColor.b - Y2;
-
-      float blend = smoothstep(similarity, similarity + smoothness, distance(vec2(Cr2, Cb2), vec2(Cr1, Cb1)));
-      gl_FragColor = vec4(videoColor.rgb, videoColor.a * blend);
-    }
-
-    </script>
-
-
     <script type="module">
-
-    
         import { App } from './app.js';
 
         document.addEventListener("DOMContentLoaded", function(){
@@ -119,8 +62,6 @@
       </div>
     </div>
   </nav>
-
-
 
   <!-- Page Content -->
   <div class="container">
@@ -284,13 +225,7 @@
 
   </div>
   <!-- /.container -->
-  <video id="video" loop crossOrigin="anonymous" webkit-playsinline style="display:none">
-    <source  id="source" src="video.mp4" type="video/mp4">   
-    </video>
 
-    <button id="btn" class="btn"><i class="fa fa-home"></i></button>
-
-     <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
