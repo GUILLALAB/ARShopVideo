@@ -6,13 +6,13 @@ import { LoadingBar } from '../../libs/LoadingBar.js';
  
  function myFunction() {
      // video.play();
-       reticle.visible = true;
+       this.reticle.visible = true;
     }
  
      function PlayVideo(srcVideo){
-      video.pause();
-      source.src = srcVideo;
-      video.load();
+      this.video.pause();
+      this.sources.src = srcVideo;
+      this.video.load();
     }
 
     function StopVideo(){
@@ -94,23 +94,23 @@ class App{
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
 
-            const video = document.getElementById( 'video' );
-   const source = document.getElementById('source');
+            this.video = document.getElementById( 'video' );
+   this.sources = document.getElementById('source');
        PlayVideo("video.mp4");
 
-      const texture = new THREE.VideoTexture( video );
-    texture.minFilter = THREE.LinearFilter;
-    texture.magFilter = THREE.LinearFilter;
-    texture.format = THREE.RGBFormat;
+      this.texture = new THREE.VideoTexture( video );
+    this.texture.minFilter = THREE.LinearFilter;
+    this.texture.magFilter = THREE.LinearFilter;
+    this.texture.format = THREE.RGBFormat;
     
-    const geometry = new THREE.PlaneBufferGeometry( 2, 1);
+    this.geometry = new THREE.PlaneBufferGeometry( 2, 1);
 
-    const vertexShader = document.getElementById("vertexShader").textContent;
-    const fragmentShader = document.getElementById("fragmentShader").textContent;
+    this.vertexShader = document.getElementById("vertexShader").textContent;
+    this.fragmentShader = document.getElementById("fragmentShader").textContent;
 
       // Cria o material usandoff a urlVideoTexture
 
-    const  material = new THREE.ShaderMaterial({
+    this.material = new THREE.ShaderMaterial({
         transparent: true,
         uniforms: {
           map: { value: texture },
@@ -123,7 +123,7 @@ class App{
       });
 
 
-     const mesh = new THREE.Mesh( geometry, material);
+     this.mesh = new THREE.Mesh( geometry, material);
       mesh.position.setFromMatrixPosition( reticle.matrix );
       this.scene.add( mesh );
       video.play();
@@ -299,15 +299,15 @@ class App{
             if ( this.hitTestSource ) this.getHitTestResults( frame );
         }
 
-    if(video!=null)
+    if(this.video!=null)
         {
-                        reticle.visible = false;
-          if ( video.readyState === video.HAVE_ENOUGH_DATA ) 
+                        this.eticle.visible = false;
+          if (this.video.readyState === video.HAVE_ENOUGH_DATA ) 
           {
-            if ( texture ) 
-              texture.needsUpdate = true;
+            if (this.texture) 
+              this.texture.needsUpdate = true;
           }
-                  if(mesh!=null){
+                  if(this.mesh!=null){
 
 }
         }
