@@ -94,7 +94,35 @@ class App{
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
 
-                self.video.play();
+  self.video = document.getElementById( 'video' );
+   self.sources = document.getElementById('source');
+   PlayVideo("video3.mp4")
+   self.texture = new THREE.VideoTexture( video );
+    self.texture.minFilter = THREE.LinearFilter;
+    self.texture.magFilter = THREE.LinearFilter;
+    self.texture.format = THREE.RGBFormat;
+
+     self.geometry = new THREE.PlaneBufferGeometry( 2, 1);
+
+    self.vertexShader = document.getElementById("vertexShader").textContent;
+    self.fragmentShader = document.getElementById("fragmentShader").textContent;
+
+        self.material = new THREE.ShaderMaterial({
+        transparent: true,
+        uniforms: {
+          map: { value: self.texture },
+          keyColor: { value: [0.0, 1.0, 0.0] },
+          similarity: { value: 0.74 },
+          smoothness: { value: 0.0 }
+        },
+        vertexShader: self.vertexShader,
+        fragmentShader: self.fragmentShader
+      });
+
+        self.mesh = new THREE.Mesh( self.geometry, self.material);
+      self.mesh.position.setFromMatrixPosition( self.reticle.matrix );
+      self.scene.add( self.mesh );
+      self.video.play();
 
             }
         }
@@ -132,44 +160,40 @@ class App{
     showChair(id){
         this.initAR();
         
+        const loader = new GLTFLoader( ).setPath(this.assetsPath);
         const self = this;
         
         this.loadingBar.visible = true;
         
-          self.video = document.getElementById( 'video' );
-   self.sources = document.getElementById('source');
-    this.video.pause();
-      this.sources.src = this.assetsPath+`video${id}.mp4`;
-      this.video.load();
-   self.texture = new THREE.VideoTexture( self.video );
-    self.texture.minFilter = THREE.LinearFilter;
-    self.texture.magFilter = THREE.LinearFilter;
-    self.texture.format = THREE.RGBFormat;
-
-     self.geometry = new THREE.PlaneBufferGeometry( 2, 1);
-
-    self.vertexShader = document.getElementById("vertexShader").textContent;
-    self.fragmentShader = document.getElementById("fragmentShader").textContent;
-
-        self.material = new THREE.ShaderMaterial({
-        transparent: true,
-        uniforms: {
-          map: { value: self.texture },
-          keyColor: { value: [0.0, 1.0, 0.0] },
-          similarity: { value: 0.74 },
-          smoothness: { value: 0.0 }
-        },
-        vertexShader: self.vertexShader,
-        fragmentShader: self.fragmentShader
-      });
-
-        self.mesh = new THREE.Mesh( self.geometry, self.material);
-      self.scene.add( self.mesh );
-      self.chair=self.mesh;
         // Load a glTF resource
-       self.chair.visible = false; 
+        loader.load(
+            // resource URL
+            `chair${id}.glb`,
+            // called when the resource is loaded
+            function ( gltf ) {
+
+                self.scene.add( gltf.scene );
+                self.chair = gltf.scene;
+        
+                self.chair.visible = false; 
                 
                 self.loadingBar.visible = false;
+                
+                self.renderer.setAnimationLoop( self.render.bind(self) );
+            },
+            // called while loading is progressing
+            function ( xhr ) {
+
+                self.loadingBar.progress = (xhr.loaded / xhr.total);
+                
+            },
+            // called when loading has errors
+            function ( error ) {
+
+                console.log( 'An error happened' );
+
+            }
+        );
     }           
     
     initAR(){
