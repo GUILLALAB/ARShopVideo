@@ -10,9 +10,9 @@ import { LoadingBar } from '../../libs/LoadingBar.js';
     }
  
     function PlayVideo(srcVideo){
-      self.video.pause();
-      self.sources.src = srcVideo;
-      self.video.load();
+      this.video.pause();
+      this.sources.src = srcVideo;
+      this.video.load();
     }
 
 
@@ -94,35 +94,7 @@ class App{
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
 
-  self.video = document.getElementById( 'video' );
-   self.sources = document.getElementById('source');
-   PlayVideo("video3.mp4")
-   self.texture = new THREE.VideoTexture( video );
-    self.texture.minFilter = THREE.LinearFilter;
-    self.texture.magFilter = THREE.LinearFilter;
-    self.texture.format = THREE.RGBFormat;
-
-     self.geometry = new THREE.PlaneBufferGeometry( 2, 1);
-
-    self.vertexShader = document.getElementById("vertexShader").textContent;
-    self.fragmentShader = document.getElementById("fragmentShader").textContent;
-
-        self.material = new THREE.ShaderMaterial({
-        transparent: true,
-        uniforms: {
-          map: { value: self.texture },
-          keyColor: { value: [0.0, 1.0, 0.0] },
-          similarity: { value: 0.74 },
-          smoothness: { value: 0.0 }
-        },
-        vertexShader: self.vertexShader,
-        fragmentShader: self.fragmentShader
-      });
-
-        self.mesh = new THREE.Mesh( self.geometry, self.material);
-      self.mesh.position.setFromMatrixPosition( self.reticle.matrix );
-      self.scene.add( self.mesh );
-      self.video.play();
+                self.video.play();
 
             }
         }
@@ -165,6 +137,34 @@ class App{
         
         this.loadingBar.visible = true;
         
+          self.video = document.getElementById( 'video' );
+   self.sources = document.getElementById('source');
+   PlayVideo(this.assetsPath+`video${id}.mp4`);
+   self.texture = new THREE.VideoTexture( video );
+    self.texture.minFilter = THREE.LinearFilter;
+    self.texture.magFilter = THREE.LinearFilter;
+    self.texture.format = THREE.RGBFormat;
+
+     self.geometry = new THREE.PlaneBufferGeometry( 2, 1);
+
+    self.vertexShader = document.getElementById("vertexShader").textContent;
+    self.fragmentShader = document.getElementById("fragmentShader").textContent;
+
+        self.material = new THREE.ShaderMaterial({
+        transparent: true,
+        uniforms: {
+          map: { value: self.texture },
+          keyColor: { value: [0.0, 1.0, 0.0] },
+          similarity: { value: 0.74 },
+          smoothness: { value: 0.0 }
+        },
+        vertexShader: self.vertexShader,
+        fragmentShader: self.fragmentShader
+      });
+
+        self.mesh = new THREE.Mesh( self.geometry, self.material);
+      self.scene.add( self.mesh );
+      self.chair=self.mesh.scene;
         // Load a glTF resource
         loader.load(
             // resource URL
@@ -172,8 +172,8 @@ class App{
             // called when the resource is loaded
             function ( gltf ) {
 
-                self.scene.add( gltf.scene );
-                self.chair = gltf.scene;
+              //  self.scene.add( gltf.scene );
+             //   self.chair = gltf.scene;
         
                 self.chair.visible = false; 
                 
