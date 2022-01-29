@@ -4,25 +4,12 @@ import { RGBELoader } from '../../libs/three/jsm/RGBELoader.js';
 import { ARButton } from '../../libs/ARButton.js';
 import { LoadingBar } from '../../libs/LoadingBar.js';
 
- let container;
-    let camera, scene, renderer,source;
-    let controller;
-
-    let reticle;
-    var video, texture,material;
-    var isset=0;
-    var mesh=null;
-    let videoTexture;
-    let videoImageContext ;
-    let hitTestSource = null;
-    let hitTestSourceRequested = false;
-var slider,output;
 
 class App{
-
+    
     constructor(){
 
-        container = document.createElement( 'div' );
+        const container = document.createElement( 'div' );
         document.body.appendChild( container );
         
         this.loadingBar = new LoadingBar();
