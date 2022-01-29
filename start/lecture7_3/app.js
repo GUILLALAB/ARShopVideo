@@ -33,7 +33,7 @@ var slider,output;
     function StopVideo(){
       document.getElementById('video').pause();
     }
-    
+
 class App{
     constructor(){
 
@@ -59,6 +59,8 @@ class App{
         renderer.setSize( window.innerWidth, window.innerHeight );
         renderer.outputEncoding = THREE.sRGBEncoding;
         container.appendChild( renderer.domElement );
+         slider = document.getElementById("myRange");
+
         this.setEnvironment();
         
         reticle = new THREE.Mesh(
@@ -85,6 +87,8 @@ class App{
             navigator.xr.isSessionSupported( 'immersive-ar' ).then( ( supported ) => {
 
                 if (supported){
+                            document.getElementById("btn").addEventListener("click", myFunction);
+
                     const collection = document.getElementsByClassName("ar-button");
                     [...collection].forEach( el => {
                         el.style.display = 'block';
