@@ -28,6 +28,7 @@ class App{
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.outputEncoding = THREE.sRGBEncoding;
         container.appendChild( this.renderer.domElement );
+        var slider = document.getElementById("myRange");
         this.setEnvironment();
         
         this.reticle = new THREE.Mesh(
@@ -53,6 +54,8 @@ class App{
             navigator.xr.isSessionSupported( 'immersive-ar' ).then( ( supported ) => {
 
                 if (supported){
+                    document.getElementById("btn").addEventListener("click", myFunction);
+
                     const collection = document.getElementsByClassName("ar-button");
                     [...collection].forEach( el => {
                         el.style.display = 'block';
@@ -73,6 +76,10 @@ class App{
             if (self.reticle.visible){
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
+
+    const video = document.getElementById( 'video' );
+   const source = document.getElementById('source');
+  
             }
         }
 
