@@ -94,10 +94,8 @@ class App{
             if (self.reticle.visible){
                 self.chair.position.setFromMatrixPosition( self.reticle.matrix );
                 self.chair.visible = true;
-
- 
     
-      self.video.play();
+                 self.video.play();
 
             }
         }

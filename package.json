@@ -1,0 +1,68 @@
+{
+  "name": "vimeo-threejs-player",
+  "version": "0.0.1",
+  "description": "A video player for rendering Vimeo videos in three.js",
+  "main": "dist/vimeo-threejs-player.js",
+  "engines": {
+    "node": ">=0.12"
+  },
+  "scripts": {
+    "start": "node assets/js/readme-glitch-fix.js && node server.js",
+    "server": "nodemon server.js",
+    "format": "standard src/**/*.js --fix",
+    "docs": "documentation build src/**/*.js -f md -o API.md",
+    "build": "webpack --env dev && webpack --env build",
+    "build:production": "webpack --env build",
+    "build:development": "webpack --env dev",
+    "build:watch": "webpack --progress --colors --watch --env dev",
+    "test": "yarn run test:unit",
+    "test:unit": "webpack-dev-server --config webpack.tests.config.js",
+    "test:cover": "cross-env NODE_ENV=test nyc mocha --require babel-register --colors spec/*.js",
+    "deploy:glitch": "sync-glitch"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "can-autoplay": "^3.0.0",
+    "dashjs": "^2.9.2",
+    "ejs": "^2.6.1",
+    "event-emitter-es6": "^1.1.5",
+    "express": "^4.16.2",
+    "host-validation": "^2.0.1",
+    "sync-request": "^6.0.0",
+    "three": "^0.89.0",
+    "vimeo": "^2.1.1"
+  },
+  "homepage": "https://labs.vimeo.com",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.51",
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "babel-eslint": "^8.0.3",
+    "babel-loader": "^8.0.0-beta.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-istanbul": "^5.1.0",
+    "babel-preset-env": "^7.0.0-beta.3",
+    "babel-register": "^7.0.0-beta.3",
+    "chai": "^4.1.2",
+    "cross-env": "^5.2.0",
+    "documentation": "^9.1.1",
+    "dotenv": "^6.2.0",
+    "jsdom": "11.11.0",
+    "jsdom-global": "3.0.2",
+    "mocha": "^4.0.1",
+    "mocha-loader": "^2.0.0",
+    "nodemon": "^1.18.9",
+    "nyc": "^13.1.0",
+    "standard": "*",
+    "sync-glitch-cli": "^2.0.1",
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "webpack": "^4.12.2",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.14",
+    "yargs": "^10.0.3"
+  },
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false
+  }
+}
